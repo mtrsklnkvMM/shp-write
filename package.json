@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha -R spec",
     "prepublish": "npm run make",
-    "make": "browserify -s shpwrite ./ > shpwrite.js"
+    "make": "browserify -s shpwrite ./ > shpwrite.js",
+    "make-test": "browserify indexTest.js > shpwrite.js"
   },
   "repository": {
     "type": "git",
@@ -35,13 +36,15 @@
   },
   "dependencies": {
     "dbf": "0.1.4",
-    "jszip": "2.5.0"
+    "file-saver": "2.0.0",
+    "jszip": "3.1.5"
   },
   "devDependencies": {
-    "browserify": "^13.0.0",
-    "cz-conventional-changelog": "^1.2.0",
-    "expect.js": "~0.3.1",
-    "mocha": "~2.4.5"
+    "browserify": "16.2.3",
+    "cz-conventional-changelog": "2.1.0",
+    "eslint": "5.9.0",
+    "expect.js": "0.3.1",
+    "mocha": "5.2.0"
   },
   "config": {
     "commitizen": {

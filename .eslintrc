@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "eslint:recommended"
+  ],
+  "plugins": [],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "Promise": false,
+    "ArrayBuffer": false,
+    "DataView": false,
+    "describe": false,
+    "it": false
+  },
+  "rules": {
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "semi": ["error", "always"],
+    "one-var": ["error", "never"],
+    "no-confusing-arrow": "error",
+    "no-unused-vars": ["error", {
+      "ignoreRestSiblings": true
+    }],
+    "key-spacing": ["error", {
+      "beforeColon": false,
+      "afterColon": true
+    }],
+    "space-infix-ops": ["error", {"int32Hint": false}]
+  }
+}

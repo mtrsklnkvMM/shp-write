@@ -1,6 +1,6 @@
-[![Build Status](https://secure.travis-ci.org/mapbox/shp-write.svg?branch=master)](http://travis-ci.org/mapbox/shp-write)
-
 # shp-write
+
+[![Build Status](https://secure.travis-ci.org/mapbox/shp-write.svg?branch=master)](http://travis-ci.org/mapbox/shp-write)
 
 Writes shapefile in pure javascript. Uses [dbf](https://github.com/tmcw/dbf)
 for the data component, and [jsZIP](http://stuk.github.io/jszip/) to generate
@@ -16,26 +16,30 @@ Or in a browser
 
     https://unpkg.com/shp-write@latest/shpwrite.js
 
+## Testing
+
+To test the download functionality run `npm run make-test` and open index.html in browser.
+This should start an immediate download of test features defined in `indexTest.js`.
+
 ## Caveats
 
 * Requires a capable fancy modern browser with [Typed Arrays](http://caniuse.com/#feat=typedarrays)
   support
 * Geometries: Point, LineString, Polygon, MultiLineString, MultiPolygon
 * Tabular-style properties export with Shapefile's field name length limit
-* Uses jsZip for ZIP files, but [compression is buggy](https://github.com/Stuk/jszip/issues/53) so it uses STORE instead of DEFLATE.
 
 ## Example
 
 ```js
 var shpwrite = require('shp-write');
 
-// (optional) set names for feature types and zipped folder
+// (optional) set names for zip file, zipped folder and feature types
 var options = {
     folder: 'myshapes',
     types: {
         point: 'mypoints',
         polygon: 'mypolygons',
-        line: 'mylines'
+        polyline: 'mylines'
     }
 }
 // a GeoJSON bridge for features
@@ -95,12 +99,20 @@ object.
 
 ## Other Implementations
 
-* https://code.google.com/p/pyshp/
+* [https://code.google.com/p/pyshp/](https://code.google.com/p/pyshp/)
 
 ## Reference
 
-* http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf
+* [http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf](http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf)
 
 ## Contributors
 
 * Nick Baugh <niftylettuce@gmail.com>
+
+## Pull requests contained in this branch
+
+This branch includes the following PRs of the official repository:
+
+* [IE download fix](https://github.com/mapbox/shp-write/pull/50) (merged manually as the source repo is gone)
+* [Fix point export](https://github.com/mapbox/shp-write/pull/69)
+* [Fixed extraction of polygon coordinates](https://github.com/mapbox/shp-write/pull/65)
