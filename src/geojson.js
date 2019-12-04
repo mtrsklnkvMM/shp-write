@@ -5,8 +5,11 @@ module.exports.polygon = justType('Polygon', 'POLYGON');
 function justType(type, TYPE) {
   return function(gj) {
     var oftype = gj.features.filter(isType(type));
+    var geometries = TYPE === 'POLYLINE'
+            ? oftype.map(function(t) { return [justCoords(t)]; })
+            : oftype.map(justCoords);
     return {
-      geometries: oftype.map(justCoords),
+      geometries: geometries ,
       properties: oftype.map(justProps),
       type: TYPE
     };
