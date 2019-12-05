@@ -5,7 +5,10 @@ var JSZip = require('jszip');
 
 module.exports = function(gj, options) {
   var zip = new JSZip();
-  var layers = zip.folder(options && options.folder ? options.folder : 'layers');
+  var container = zip;
+  if(options && options.folder){
+    container = zip.folder(options.folder);
+  }
   var prj = (options && options.prj) ? options.prj : defaultPrj;
 
   [geojson.point(gj), geojson.line(gj), geojson.polygon(gj)]
@@ -20,10 +23,10 @@ module.exports = function(gj, options) {
           l.geometries,
           function(err, files) {
             var fileName = options && options.types[l.type.toLowerCase()] ? options.types[l.type.toLowerCase()] : l.type;
-            layers.file(fileName + '.shp', files.shp.buffer, { binary: true });
-            layers.file(fileName + '.shx', files.shx.buffer, { binary: true });
-            layers.file(fileName + '.dbf', files.dbf.buffer, { binary: true });
-            layers.file(fileName + '.prj', prj);
+            container.file(fileName + '.shp', files.shp.buffer, { binary: true });
+            container.file(fileName + '.shx', files.shx.buffer, { binary: true });
+            container.file(fileName + '.dbf', files.dbf.buffer, { binary: true });
+            container.file(fileName + '.prj', prj);
           });
       }
     });
